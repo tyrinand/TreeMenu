@@ -1,0 +1,98 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <table>
+            <tr>
+                <td id="cont-menu-1">
+                    <ul id="root-1" class="menu">
+                        <li>
+                            <span class="caret-menu"></span>
+                            <a href="#">Аэрофлот</a>
+                            <ul class="nested">
+                                <li>Black Tea</li>
+                                <li>White Tea</li>
+                                <li>
+                                    <span class="caret-menu">Проверки</span>
+                                    <ul class="nested">
+                                        <li>1</li>
+                                        <li>2</li>
+                                        <li>3</li>
+                                        <li>4</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td id="cont-menu-0">
+                    <ul id="root-0" class="menu">
+                        <li>
+                            <span class="caret-menu" onclick="LoadMenu(0)"></span>
+                            <a href="#">Компания без меню</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<style>
+    /* Remove default bullets */
+    .nested, .menu {
+        list-style-type: none;
+        padding-left: 30px;
+    }
+
+    /* Remove margins and padding from the parent ul */
+    .menu {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Style the caret/arrow */
+    .caret-menu {
+        cursor: pointer;
+        user-select: none; /* Prevent text selection */
+    }
+
+        /* Create the caret/arrow with a unicode, and style it */
+        .caret-menu::before {
+            content: "\25B6";
+            color: black;
+            display: inline-block;
+            margin-right: 6px;
+        }
+
+    /* Rotate the caret/arrow icon when clicked on (using JavaScript) */
+    .caret-menu-down::before {
+        transform: rotate(90deg);
+    }
+
+    /* Hide the nested list */
+    .nested {
+        display: none;
+    }
+
+    /* Show the nested list when the user clicks on the caret/arrow (with JavaScript) */
+    .active {
+        display: block;
+    }
+</style>
+
+<script>
+    var toggler = document.getElementsByClassName("caret-menu");
+    var i;
+
+    for (i = 0; i < toggler.length; i++) {
+        toggler[i].addEventListener("click", function () {
+            this.parentElement.querySelector(".nested").classList.toggle("active");
+            this.classList.toggle("caret-menu-down");
+        });
+    }
+</script>
